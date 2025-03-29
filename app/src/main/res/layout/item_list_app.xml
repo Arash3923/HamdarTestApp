@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/layout"
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingBottom="8dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+
+  <ImageView
+      android:id="@+id/logo"
+      android:layout_width="48dp"
+      android:layout_height="48dp"
+      android:layout_marginRight="24dp"
+      android:elevation="3dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/ic_launcher_foreground" />
+
+  <TextView
+      android:id="@+id/name"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:gravity="center|right"
+      android:paddingLeft="12dp"
+      android:paddingRight="12dp"
+      android:layout_marginTop="8dp"
+      android:text="name"
+      android:textColor="@color/black"
+      android:textSize="14sp"
+      app:layout_constraintEnd_toStartOf="@+id/logo"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/logo" />
+
+
+  <TextView
+      android:id="@+id/packageName"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:layout_marginRight="8dp"
+      android:maxLines="1"
+      android:text="package"
+      android:textColor="@color/black"
+      android:textDirection="rtl"
+      android:textSize="12sp"
+      app:layout_constraintEnd_toEndOf="@+id/name"
+      app:layout_constraintEnd_toStartOf="@+id/logo"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/name" />
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="0.5dp"
+      android:layout_marginTop="12dp"
+      android:background="@color/black"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/packageName" />
+  </androidx.constraintlayout.widget.ConstraintLayout>

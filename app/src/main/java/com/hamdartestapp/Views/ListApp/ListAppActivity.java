@@ -6,21 +6,26 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.hamdartestapp.Api.AppListCallback;
 import com.hamdartestapp.Api.Models.AppModel;
 import com.hamdartestapp.Api.Repository.AppRepository;
 import com.hamdartestapp.R;
+import com.hamdartestapp.Views.ListApp.adapter.ListAppAdapter;
+import com.hamdartestapp.databinding.ActivityListAppBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListAppActivity extends AppCompatActivity  {
-
+ActivityListAppBinding activityBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_list_app);
+        activityBinding = DataBindingUtil.setContentView(this, R.layout.activity_list_app);
         getList();
 
     }
@@ -30,11 +35,10 @@ public class ListAppActivity extends AppCompatActivity  {
         appRepository.apiCall(this, new AppListCallback() {
             @Override
             public void onSuccess(List<AppModel> appList) {
-                for (int i = 0; i <appList.size() ; i++) {
-                    Toast.makeText(ListAppActivity.this, appList.get(i).getAppName()+"", Toast.LENGTH_SHORT).show();
-                }
-//                runOnUiThread(() -> {
-//                });
+
+                runOnUiThread(() -> {
+                    setList(appList);
+                });
             }
 
             @Override
@@ -46,6 +50,14 @@ public class ListAppActivity extends AppCompatActivity  {
 //                });
             }
         });
+    }
+
+    private void setList(List<AppModel> appList) {
+        RecyclerView.Adapter adapter;
+        activityBinding.recycler.setNestedScrollingEnabled(false);
+        activityBinding.recycler.setLayoutManager(new GridLayoutManager(this, 1));
+        adapter = new ListAppAdapter(this, (ArrayList<AppModel>) appList);
+        activityBinding.recycler.setAdapter(adapter);
     }
 
 }
