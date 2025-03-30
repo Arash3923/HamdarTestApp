@@ -1,5 +1,9 @@
 package com.hamdartestapp.Api.Models;
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 
 public class AppModel {
     @SerializedName("id")
@@ -78,5 +82,28 @@ public class AppModel {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+
+    public static AppModel deSerialize(String Json)
+    {
+        AppModel Item = null;
+        try {
+            Gson gson = new Gson();
+            Type listOfMyClassObject = new TypeToken<AppModel>() {
+            }.getType();
+            Item = gson.fromJson(Json, listOfMyClassObject);
+
+        } catch (Exception e) {
+
+        }
+        if (Item == null) Item = new AppModel();
+        return Item;
+    }
+    public static String serialize(AppModel Item)
+    {
+        Gson gson = new Gson();
+        return gson.toJson(Item);
+
     }
 }

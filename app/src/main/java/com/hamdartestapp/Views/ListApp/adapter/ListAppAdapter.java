@@ -11,11 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.hamdartestapp.Api.Models.AppModel;
+import com.hamdartestapp.Dialog.DetailsSheet;
 import com.hamdartestapp.R;
 
 import java.util.ArrayList;
@@ -56,6 +58,9 @@ public class ListAppAdapter extends RecyclerView.Adapter<ListAppAdapter.ViewHold
                 placeholder(R.drawable.ic_launcher_background).
                 error(R.drawable.ic_launcher_background).
                 dontAnimate().into(viewHolder.logo);
+        viewHolder.layout.setOnClickListener(view -> {
+            DetailsSheet.Show((AppCompatActivity) context,model);
+        });
     }
 
     private String getUrlLogo(String iconUrl) {
